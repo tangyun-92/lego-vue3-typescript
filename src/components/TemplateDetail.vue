@@ -1,15 +1,16 @@
 <template>
   <div class="work-detail-container">
-    <a-row type="flex" justify="center" v-if="template">
+    <pre>route</pre>
+    <a-row type="flex" justify="center">
       <a-col :span="8" class="cover-img">
-        <a :href="template.coverImg"><img :src="template.coverImg" alt="" id="cover-img"></a>
+<!--        <a :href="template.coverImg"><img :src="template.coverImg" alt="" id="cover-img"></a>-->
       </a-col>
       <a-col :span="8">
-        <h2>{{template.title}}</h2>
-        <p>{{template.desc}}</p>
+<!--        <h2>{{template.title}}</h2>-->
+<!--        <p>{{template.desc}}</p>-->
         <div class="author">
           <a-avatar>V</a-avatar>
-          该模版由 <b>{{template.author}}</b> 创作
+<!--          该模版由 <b>{{template.author}}</b> 创作-->
         </div>
         <div class="bar-code-area" >
           <span>扫一扫，手机预览</span>
@@ -37,9 +38,17 @@
 
 <script lang="ts">
 import { defineComponent } from 'vue'
+import { useRoute } from 'vue-router'
 
 export default defineComponent({
   name: 'TemplateDetail',
+  setup() {
+    const route = useRoute()
+
+    return {
+      route
+    }
+  }
 })
 </script>
 
