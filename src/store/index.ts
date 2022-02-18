@@ -27,48 +27,43 @@ const testData: TemplateProps[] = [
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg:
-      'https://static.imooc-lego.com/upload-files/screenshot-889755.png',
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-889755.png'
   },
   {
     id: 2,
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg: 'http://static-dev.imooc-lego.com/imooc-test/sZHlgv.png',
+    coverImg: 'http://static-dev.imooc-lego.com/imooc-test/sZHlgv.png'
   },
   {
     id: 3,
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg:
-      'https://static.imooc-lego.com/upload-files/screenshot-323204.png',
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-323204.png'
   },
   {
     id: 4,
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg:
-      'https://static.imooc-lego.com/upload-files/screenshot-677311.png',
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-677311.png'
   },
   {
     id: 5,
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg:
-      'https://static.imooc-lego.com/upload-files/screenshot-726751.png',
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-726751.png'
   },
   {
     id: 6,
     title: '测试标题',
     author: 'ty',
     copiedCount: 2,
-    coverImg:
-      'https://static.imooc-lego.com/upload-files/screenshot-682056.png',
-  },
+    coverImg: 'https://static.imooc-lego.com/upload-files/screenshot-682056.png'
+  }
 ]
 
 const store = createStore<GlobalDataProps>({
@@ -76,6 +71,19 @@ const store = createStore<GlobalDataProps>({
     templates: testData,
     user: {
       isLogin: false
+    }
+  },
+  mutations: {
+    login(state) {
+      state.user = { ...state.user, isLogin: true, userName: 'ty' }
+    },
+    logout(state) {
+      state.user = { isLogin: false }
+    }
+  },
+  getters: {
+    getTemplateById: (state) => (id: number) => {
+      return state.templates.find((item) => item.id === id)
     }
   }
 })
