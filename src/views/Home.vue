@@ -1,62 +1,14 @@
 <template>
   <div class="content-container">
-    <TemplateList :list="testData" />
+    <TemplateList :list="testData"/>
   </div>
 </template>
 
-<script>
-import {defineComponent} from 'vue'
-import TemplateList from "@/components/TemplateList";
-
-const testData = [
-  {
-    id: 1,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg:
-        'https://static.imooc-lego.com/upload-files/screenshot-889755.png',
-  },
-  {
-    id: 2,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg: 'http://static-dev.imooc-lego.com/imooc-test/sZHlgv.png',
-  },
-  {
-    id: 3,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg:
-        'https://static.imooc-lego.com/upload-files/screenshot-323204.png',
-  },
-  {
-    id: 4,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg:
-        'https://static.imooc-lego.com/upload-files/screenshot-677311.png',
-  },
-  {
-    id: 5,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg:
-        'https://static.imooc-lego.com/upload-files/screenshot-726751.png',
-  },
-  {
-    id: 6,
-    title: '测试标题',
-    author: 'ty',
-    copiedCount: 2,
-    coverImg:
-        'https://static.imooc-lego.com/upload-files/screenshot-682056.png',
-  },
-]
+<script lang="ts">
+import {computed, defineComponent} from 'vue'
+import {useStore} from 'vuex'
+import {GlobalDataProps} from '@/store'
+import TemplateList from "@/components/TemplateList"
 
 export default defineComponent({
   name: "Home",
@@ -64,6 +16,9 @@ export default defineComponent({
     TemplateList
   },
   setup() {
+    const store = useStore<GlobalDataProps>()
+    const testData = computed(() => store.state.templates)
+
     return {
       testData
     }
