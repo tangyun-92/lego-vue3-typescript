@@ -1,3 +1,8 @@
+/*
+* @Author: TangYun
+* @Date: 2022/2/18 22:26
+* @Description: 模板列表
+*/
 <template>
   <div class="template-list-component">
     <a-row :gutter="16">
@@ -5,7 +10,7 @@
         <router-link :to="{ name: 'Template', params: { id: item.id } }">
           <a-card hoverable>
             <template v-slot:cover>
-              <img :src="item.coverImg" v-if="item.coverImg" alt="" />
+              <img :src="item.coverImg" v-if="item.coverImg" alt=""/>
               <img
                 src="http://typescript-vue.oss-cn-beijing.aliyuncs.com/vue-marker/5f81cca3f3bf7a0e1ebaf885.png"
                 v-else
@@ -36,7 +41,7 @@
 
 <script lang="ts">
 import { defineComponent, PropType } from 'vue'
-import { TemplateProps } from '@/store'
+import { TemplateProps } from '@/store/templates'
 
 export default defineComponent({
   name: 'TemplateList',
@@ -45,9 +50,6 @@ export default defineComponent({
       type: Array as PropType<TemplateProps[]>,
       required: true
     }
-  },
-  setup(props) {
-    console.log(props)
   }
 })
 </script>

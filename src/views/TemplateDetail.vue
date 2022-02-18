@@ -1,10 +1,15 @@
+/*
+* @Author: TangYun
+* @Date: 2022/2/18 22:26
+* @Description: 模板详情
+*/
 <template>
   <div class="work-detail-container">
     <pre>route</pre>
     <a-row type="flex" justify="center">
       <a-col :span="8" class="cover-img">
         <a :href="template.coverImg"
-          ><img :src="template.coverImg" alt="" id="cover-img"
+        ><img :src="template.coverImg" alt="" id="cover-img"
         /></a>
       </a-col>
       <a-col :span="8">
@@ -20,9 +25,9 @@
         </div>
         <div class="use-button">
           <router-link to="/editor">
-            <a-button type="primary" size="large"> 使用模版 </a-button>
+            <a-button type="primary" size="large"> 使用模版</a-button>
           </router-link>
-          <a-button size="large" @click="download"> 下载图片海报 </a-button>
+          <a-button size="large" @click="download"> 下载图片海报</a-button>
         </div>
       </a-col>
     </a-row>
@@ -33,7 +38,8 @@
 import { computed, defineComponent } from 'vue'
 import { useRoute } from 'vue-router'
 import { useStore } from 'vuex'
-import { GlobalDataProps, TemplateProps } from '@/store'
+import { GlobalDataProps } from '@/store'
+import { TemplateProps } from '@/store/templates'
 
 export default defineComponent({
   name: 'TemplateDetail',
