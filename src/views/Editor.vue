@@ -1,23 +1,20 @@
-/*
-* @Author: TangYun
-* @Date: 2022/2/18 22:27
-* @Description: 编辑器页面
-*/
+/* * @Author: TangYun * @Date: 2022/2/18 22:27 * @Description: 编辑器页面 */
 <template>
   <div class="editor-container">
     <a-layout>
       <a-layout-sider width="300" style="background: #fff">
-        <div class="sidebar-container">
-          组件列表
-        </div>
+        <div class="sidebar-container">组件列表</div>
       </a-layout-sider>
       <a-layout style="padding: 0 24px 24px">
         <a-layout-content class="preview-container">
           <p>画布区域</p>
           <div class="preview-list" id="canvas-area">
-            <div v-for="component in components" :key="components.id">
-              {{ component.props.text }}
-            </div>
+            <component
+              v-for="component in components"
+              :key="component.id"
+              :is="component.name"
+              v-bind="component.props"
+            ></component>
           </div>
         </a-layout-content>
       </a-layout>
@@ -36,9 +33,13 @@
 import { computed, defineComponent } from 'vue'
 import { useStore } from 'vuex'
 import { GlobalDataProps } from '@/store'
+import LText from '@/components/LText.vue'
 
 export default defineComponent({
   name: 'Editor',
+  components: {
+    LText
+  },
   setup() {
     const store = useStore<GlobalDataProps>()
     const components = computed(() => store.state.editor.components)

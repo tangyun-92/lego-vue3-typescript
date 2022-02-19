@@ -1,3 +1,8 @@
+/*
+* @Author: TangYun
+* @Date: 2022/2/19 21:59
+* @Description: 编辑器store
+*/
 import { Module } from 'vuex'
 import { GlobalDataProps } from '@/store/index'
 import { v4 as uuidv4 } from 'uuid'
@@ -23,21 +28,34 @@ export const testComponents: ComponentData[] = [
     id: uuidv4(),
     name: 'LText',
     props: {
-      text: 'hello'
+      text: 'hello',
+      fontSize: '20px',
+      color: 'red',
+      lineHeight: '1',
+      textAlign: 'left',
+      fontFamily: '"SimSun","STSong"',
     },
   },
   {
     id: uuidv4(),
     name: 'LText',
     props: {
-      text: 'hello1'
+      text: 'hello1',
+      fontSize: '10px',
+      fontWeight: 'bold',
+      lineHeight: '2',
+      textAlign: 'right',
+      fontFamily: '"SimHei","STHeiti"',
     },
   },
   {
     id: uuidv4(),
     name: 'LText',
     props: {
-      text: 'hello2'
+      text: 'hello2',
+      fontSize: '15px',
+      actionType: 'url',
+      url: 'https://www.baidu.com',
     },
   },
 ]
