@@ -1,10 +1,12 @@
 import { createStore } from 'vuex';
 import templates from '@/store/templates';
 import user from '@/store/user';
+import editor from '@/store/editor';
 const store = createStore({
     modules: {
         templates,
-        user
+        user,
+        editor
     }
 });
 export default store;

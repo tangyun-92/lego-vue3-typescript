@@ -15,13 +15,16 @@
         <a-layout-content class="preview-container">
           <p>画布区域</p>
           <div class="preview-list" id="canvas-area">
+            <div v-for="component in components" :key="components.id">
+              {{ component.props.text }}
+            </div>
           </div>
         </a-layout-content>
       </a-layout>
       <a-layout-sider
-          width="300"
-          style="background: #fff"
-          class="settings-panel"
+        width="300"
+        style="background: #fff"
+        class="settings-panel"
       >
         组件属性
       </a-layout-sider>
@@ -30,10 +33,20 @@
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { computed, defineComponent } from 'vue'
+import { useStore } from 'vuex'
+import { GlobalDataProps } from '@/store'
 
 export default defineComponent({
-  name: 'Editor'
+  name: 'Editor',
+  setup() {
+    const store = useStore<GlobalDataProps>()
+    const components = computed(() => store.state.editor.components)
+
+    return {
+      components
+    }
+  }
 })
 </script>
 
