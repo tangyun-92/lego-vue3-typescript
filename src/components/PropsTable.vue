@@ -5,11 +5,15 @@
       :key="key"
       class="prop-item"
     >
-      <component
-        v-if="value"
-        :is="value.component"
-        :value="value.value"
-      />
+      <span class="label" v-if="value.text">{{ value.text }}</span>
+      <div class="prop-component">
+        <component
+          v-if="value"
+          :is="value.component"
+          :value="value.value"
+          v-bind="value.extraProps"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -37,8 +41,9 @@ export default defineComponent({
           item.value = value
           result[newKey] = item
         }
+        console.log(result)
         return result
-      }, {} as PropsToForms)
+      }, {} as Required<PropsToForms>)
     })
 
     return {

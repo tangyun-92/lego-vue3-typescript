@@ -22,21 +22,21 @@ export const mapPropsToForms: PropsToForms = {
   text: {
     text: '文本',
     component: 'a-textarea',
-    extraProps: {rows: 3},
+    extraProps: { rows: 3 },
     afterTransform: (e: any) => e.target.value
   },
   fontSize: {
     text: '字号',
     component: 'a-input-number',
     initTransform: (v: string) => parseInt(v),
-    afterTransform: (e: number) => e ? `${e}px` : '',
+    afterTransform: (e: number) => e ? `${e}px` : ''
   },
   lineHeight: {
     text: '行高',
     component: 'a-slider',
-    extraProps: {min: 0, max: 3, step: 0.1},
+    extraProps: { min: 0, max: 3, step: 0.1 },
     initTransform: (v: string) => parseFloat(v),
-    afterTransform: (e: number) => e.toString(),
+    afterTransform: (e: number) => e.toString()
   },
   textAlign: {
     component: 'a-radio-group',
@@ -52,10 +52,10 @@ export const mapPropsToForms: PropsToForms = {
   fontFamily: {
     component: 'a-select',
     subComponent: 'a-select-option',
-    text: '字体',
+    text: '字体'
     // options: [
     //   {value: '', text: '无'},
     //   ...fontFamilyOptions
     // ],
-  },
+  }
 }
