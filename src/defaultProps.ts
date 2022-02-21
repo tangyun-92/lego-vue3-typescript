@@ -55,7 +55,9 @@ export const textStylePropNames = without(
  * 转换为vue组件中props需要的type与default
  * @param props
  */
-export const transformToComponentProps = (props: { [key: string]: any }) => {
+export const transformToComponentProps = <T extends { [key: string]: any }>(
+  props: T
+) => {
   return mapValues(props, (item) => {
     return {
       type: item.constructor,
