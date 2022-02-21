@@ -11,7 +11,7 @@
       </a-layout-content>
     </a-layout>
     <a-layout-footer>
-      © 慕课网（imooc.com）版权所有 | 津ICP备20000929号-2
+      © 版权所有
     </a-layout-footer>
   </div>
 </template>

@@ -27,10 +27,6 @@ export default defineComponent({
 </script>
 
 <style>
-.page-title {
-  color: #fff;
-}
-
 .content-container {
   background: #fff;
   padding: 0 24px 24px 30px;
@@ -38,15 +34,5 @@ export default defineComponent({
   max-width: 1200px;
   margin: 50px auto;
   width: 100%;
-}
-
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.page-title {
-  color: #fff;
 }
 </style>

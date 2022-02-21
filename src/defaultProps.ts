@@ -1,5 +1,30 @@
 import { mapValues, without } from 'lodash-es'
 
+export interface CommonComponentProps {
+  // actions
+  actionType: string;
+  url: string;
+  // size
+  height: string;
+  width: string;
+  paddingLeft: string;
+  paddingRight: string;
+  paddingTop: string;
+  paddingBottom: string;
+  // border type
+  borderStyle: string;
+  borderColor: string;
+  borderWidth: string;
+  borderRadius: string;
+  // shadow and opacity
+  boxShadow: string;
+  opacity: string;
+  // position and x,y
+  position: string;
+  left: string;
+  top: string;
+  right: string;
+}
 export const commonDefaultProps = {
   // action
   actionType: '',
@@ -25,7 +50,18 @@ export const commonDefaultProps = {
   top: '0',
   right: '0'
 }
-
+export interface TextComponentProps extends CommonComponentProps {
+  text: string;
+  fontSize: string;
+  fontFamily: string;
+  fontWeight: string;
+  fontStyle: string;
+  textDecoration: string;
+  lineHeight: string;
+  textAlign: string;
+  color: string;
+  backgroundColor: string;
+}
 export const textDefaultProps = {
   text: '正文内容',
   fontSize: '14px',
@@ -55,12 +91,12 @@ export const textStylePropNames = without(
  * 转换为vue组件中props需要的type与default
  * @param props
  */
-export const transformToComponentProps = <T extends { [key: string]: any }>(
-  props: T
+export const transformToComponentProps = (
+  props: TextComponentProps
 ) => {
   return mapValues(props, (item) => {
     return {
-      type: item.constructor,
+      type: item.constructor as StringConstructor,
       default: item
     }
   })
