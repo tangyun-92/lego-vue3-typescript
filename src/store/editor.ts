@@ -56,7 +56,7 @@ export const testComponents: ComponentData[] = [
       text: 'hello2',
       fontSize: '15px',
       actionType: 'url',
-      url: 'https://www.baidu.com',
+      // url: 'https://www.baidu.com',
     },
   },
 ]
@@ -74,6 +74,9 @@ const editor: Module<EditorProps, GlobalDataProps> = {
         props
       }
       state.components.push(newComponent)
+    },
+    removeComponent(state, id: string) {
+      state.components = state.components.filter(item => item.id !== id)
     }
   }
 }

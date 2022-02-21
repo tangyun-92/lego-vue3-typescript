@@ -1,4 +1,8 @@
-/* * @Author: TangYun * @Date: 2022/2/18 22:27 * @Description: 编辑器页面 */
+/*
+* @Author: TangYun
+* @Date: 2022/2/20 15:54
+* @Description: 编辑器
+*/
 <template>
   <div class="editor-container">
     <a-layout>
@@ -19,8 +23,11 @@
               v-for="component in components"
               :key="component.id"
               :is="component.name"
+              :showDelIcon="true"
               v-bind="component.props"
-            ></component>
+              @removeItem="removeItem(component.id)"
+            >
+            </component>
           </div>
         </a-layout-content>
       </a-layout>
@@ -55,11 +62,15 @@ export default defineComponent({
     const addItem = (props: any) => {
       store.commit('addComponent', props)
     }
+    const removeItem = (id: string) => {
+      store.commit('removeComponent', id)
+    }
 
     return {
       components,
       defaultTextTemplates,
-      addItem
+      addItem,
+      removeItem
     }
   }
 })
