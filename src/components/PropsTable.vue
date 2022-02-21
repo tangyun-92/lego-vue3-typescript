@@ -12,7 +12,18 @@
           :is="value.component"
           :value="value.value"
           v-bind="value.extraProps"
-        />
+        >
+          <template v-if="value.options">
+            <component
+              :is="value.subComponent"
+              v-for="(option, k) in value.options"
+              :key="k"
+              :value="option.value"
+            >
+              {{ option.text }}
+            </component>
+          </template>
+        </component>
       </div>
     </div>
   </div>
@@ -21,8 +32,20 @@
 <script lang="ts">
 import { computed, defineComponent, PropType } from 'vue'
 import { TextComponentProps } from '@/defaultProps'
-import { reduce } from 'lodash-es'
+import { reduce } from 'lodash'
 import { mapPropsToForms, PropsToForms } from '@/propsMap'
+
+interface FormProps {
+  component: string;
+  subComponent?: string;
+  value: string;
+  extraProps?: { [key: string]: any };
+  text?: string;
+  options?: { text: string; value: any }[];
+  valueProp: string;
+  eventName: string;
+  events: { [key: string]: (e: any) => void };
+}
 
 export default defineComponent({
   name: 'PropsTable',
@@ -38,12 +61,11 @@ export default defineComponent({
         const newKey = key as keyof TextComponentProps
         const item = mapPropsToForms[newKey]
         if (item) {
-          item.value = value
+          item.value = item.initTransform ? item.initTransform(value) : value
           result[newKey] = item
         }
-        console.log(result)
         return result
-      }, {} as Required<PropsToForms>)
+      }, {} as { [key: string]: FormProps })
     })
 
     return {

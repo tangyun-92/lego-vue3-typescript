@@ -6,7 +6,7 @@ export interface PropToForm {
   value?: string;
   extraProps?: { [key: string]: any };
   text?: string;
-  // options?: { text: string | VNode; value: any }[];
+  options?: { text: string; value: any }[];
   initTransform?: (v: any) => any;
   afterTransform?: (v: any) => any;
   valueProp?: string;
@@ -42,20 +42,19 @@ export const mapPropsToForms: PropsToForms = {
     component: 'a-radio-group',
     subComponent: 'a-radio-button',
     text: '对齐',
-    // options: [
-    //   {value: 'left', text: '左'},
-    //   {value: 'center', text: '中'},
-    //   {value: 'right', text: '右'},
-    // ],
+    options: [
+      {value: 'left', text: '左'},
+      {value: 'center', text: '中'},
+      {value: 'right', text: '右'},
+    ],
     afterTransform: (e: any) => e.target.value
   },
   fontFamily: {
     component: 'a-select',
     subComponent: 'a-select-option',
-    text: '字体'
-    // options: [
-    //   {value: '', text: '无'},
-    //   ...fontFamilyOptions
-    // ],
+    text: '字体',
+    options: [
+      {value: '', text: '无'}
+    ],
   }
 }
