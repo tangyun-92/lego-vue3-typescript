@@ -8,7 +8,7 @@ import { GlobalDataProps } from '@/store/index'
 import { v4 as uuidv4 } from 'uuid'
 import { TextComponentProps } from '@/defaultProps'
 
-interface ComponentData {
+export interface ComponentData {
   // 这个元素的属性
   props: { [key: string]: any};
   // id，uuid v4 插件生成
@@ -77,6 +77,14 @@ const editor: Module<EditorProps, GlobalDataProps> = {
     },
     removeComponent(state, id: string) {
       state.components = state.components.filter(item => item.id !== id)
+    },
+    setActive(state, id: string) {
+      state.currentElement = id
+    }
+  },
+  getters: {
+    getCurrentElement: (state) => {
+      return state.components.find(item => item.id === state.currentElement)
     }
   }
 }

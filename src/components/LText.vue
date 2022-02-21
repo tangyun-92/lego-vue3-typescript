@@ -6,7 +6,6 @@
     @click="handleClick"
   >
     {{ text }}
-    <span v-if="showDelIcon" class="del-icon" @click="removeItem">x</span>
   </component>
 </template>
 
@@ -25,29 +24,20 @@ export default defineComponent({
   name: 'LText',
   props: {
     ...defaultProps,
-    showDelIcon: {
-      type: Boolean,
-      default: false
-    },
     tag: {
       type: String,
       default: 'div'
     }
   },
-  emits: ['remove-item'],
   setup(props, context) {
     const { styleProps, handleClick } = useComponentCommon(
       props,
       textStylePropNames
     )
-    const removeItem = () => {
-      context.emit('remove-item')
-    }
 
     return {
       styleProps,
-      handleClick,
-      removeItem
+      handleClick
     }
   }
 })
@@ -68,17 +58,5 @@ button.l-text-component {
   position: relative !important;
   margin: 5px 0;
 }
-.del-icon {
-  display: inline-block;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #999;
-  border-radius: 50%;
-  text-align: center;
-  line-height: 12px;
-  font-family: sans-serif;
-  font-size: 12px;
-  color: #999;
-  font-weight: 100;
-}
+
 </style>
