@@ -3,7 +3,7 @@ import { TextComponentProps } from '@/defaultProps'
 export interface PropToForm {
   component: string;
   subComponent?: string;
-  value?: string;
+  // value?: string;
   extraProps?: { [key: string]: any };
   text?: string;
   options?: { text: string; value: any }[];
@@ -11,7 +11,7 @@ export interface PropToForm {
   afterTransform?: (v: any) => any;
   valueProp?: string;
   eventName?: string;
-  // events?:
+  // events?: { [key: string]: (e: any) => void };
 }
 
 export type PropsToForms = {
@@ -43,9 +43,9 @@ export const mapPropsToForms: PropsToForms = {
     subComponent: 'a-radio-button',
     text: '对齐',
     options: [
-      {value: 'left', text: '左'},
-      {value: 'center', text: '中'},
-      {value: 'right', text: '右'},
+      { value: 'left', text: '左' },
+      { value: 'center', text: '中' },
+      { value: 'right', text: '右' }
     ],
     afterTransform: (e: any) => e.target.value
   },
@@ -54,7 +54,7 @@ export const mapPropsToForms: PropsToForms = {
     subComponent: 'a-select-option',
     text: '字体',
     options: [
-      {value: '', text: '无'}
-    ],
+      { value: '', text: '无' }
+    ]
   }
 }

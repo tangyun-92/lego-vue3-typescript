@@ -10,8 +10,9 @@
         <component
           v-if="value"
           :is="value.component"
-          :value="value.value"
+          :[value.valueProp]="value.value"
           v-bind="value.extraProps"
+          v-on="value.events"
         >
           <template v-if="value.options">
             <component
@@ -33,7 +34,7 @@
 import { computed, defineComponent, PropType } from 'vue'
 import { TextComponentProps } from '@/defaultProps'
 import { reduce } from 'lodash'
-import { mapPropsToForms, PropsToForms } from '@/propsMap'
+import { mapPropsToForms } from '@/propsMap'
 
 interface FormProps {
   component: string;
@@ -55,14 +56,31 @@ export default defineComponent({
       required: true
     }
   },
-  setup(props) {
+  emits: ['change'],
+  setup(props, context) {
     const finalProps = computed(() => {
       return reduce(props.props, (result, value, key) => {
         const newKey = key as keyof TextComponentProps
         const item = mapPropsToForms[newKey]
         if (item) {
-          item.value = item.initTransform ? item.initTransform(value) : value
-          result[newKey] = item
+          const {
+            valueProp = 'value',
+            eventName = 'change',
+            initTransform,
+            afterTransform
+          } = item
+          const newItem: FormProps = {
+            ...item,
+            value: initTransform ? initTransform(value) : value,
+            valueProp,
+            eventName,
+            events: {
+              [eventName]: (e: any) => {
+                context.emit('change', { key, value: afterTransform ? afterTransform(e) : e })
+              }
+            }
+          }
+          result[newKey] = newItem
         }
         return result
       }, {} as { [key: string]: FormProps })

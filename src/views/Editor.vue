@@ -50,6 +50,7 @@
         <props-table
           v-if="currentElement && currentElement.props"
           :props="currentElement.props"
+          @change="handleChange"
         ></props-table>
         <pre>
           {{ currentElement && currentElement.props }}
@@ -91,6 +92,10 @@ export default defineComponent({
     const setActive = (id: string) => {
       store.commit('setActive', id)
     }
+    const handleChange = (e: any) => {
+      console.log('event', e)
+      store.commit('updateComponent', e)
+    }
 
     return {
       components,
@@ -98,7 +103,8 @@ export default defineComponent({
       addItem,
       removeItem,
       setActive,
-      currentElement
+      currentElement,
+      handleChange
     }
   }
 })
