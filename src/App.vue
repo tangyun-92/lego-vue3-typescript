@@ -1,14 +1,17 @@
 <template>
   <div class="app-container">
-    <router-view/>
+    <Uploader :action="''" />
+    <router-view />
   </div>
 </template>
 
 <script lang="ts">
-import {defineComponent} from 'vue'
+import { defineComponent } from 'vue'
+import Uploader from '@/components/Uploader.vue'
 
 export default defineComponent({
-  name: 'App'
+  name: 'App',
+  components: {Uploader}
 })
 </script>
 
